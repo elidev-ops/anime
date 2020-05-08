@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
   width: 100%;
   height: 100%;
 `;
@@ -15,12 +14,18 @@ export const Header = styled.header`
   a {
     margin-left: 20px;
   }
+
+  h2 {
+    margin: 0 auto;
+    color: #f1f1f1;
+  }
 `;
 export const Content = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 
   div {
     h1 {
@@ -30,7 +35,7 @@ export const Content = styled.div`
   }
   ul {
     margin-left: 50px;
-    margin-top: 30px;
+    margin-top: 60px;
     list-style: none;
     li {
       width: 100%;

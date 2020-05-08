@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
-
   width: 100%;
   height: 100%;
   display: flex;
@@ -25,6 +23,7 @@ export const Search = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+  font-family: 'Nunito', sans-serif !important;
 
   form {
     width: 100%;
@@ -51,6 +50,7 @@ export const Search = styled.div`
 `;
 
 export const Content = styled.ul`
+  font-family: 'Nunito', sans-serif !important;
   margin-top: 30px;
   width: 100%;
   max-width: 890px;

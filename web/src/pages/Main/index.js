@@ -12,27 +12,29 @@ import api from '../../services/api';
 import { Container, Search, Content } from './styles';
 
 function Main() {
-  const [anime, setAnime] = useState('');
+  // const [anime_conf, setAnime_conf] = useState({});
+  const [name, setName] = useState('');
   const [animes, setAnimes] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!anime) return;
+    localStorage.clear();
+    if (!name) return;
     setLoading(true);
-    api.get(`/animes?name=${anime}`).then((response) => {
+    api.get(`/animes?name=${name}`).then((response) => {
       setAnimes(response.data.value);
       setLoading(false);
     });
-  }, [anime]);
+  }, [name]);
 
   return (
     <Container>
-      <h1>O que está procurando?</h1>
+      <h1>Que anime está procurando?</h1>
       <Search>
         <Form>
           <DebounceInput
             debounceTimeout={500}
-            onChange={(e) => setAnime(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Digite o nome do anime..."
           />
           <button type="submit">
@@ -46,7 +48,15 @@ function Main() {
         ) : (
           animes.map((anime) => (
             <li key={anime.Id}>
-              <Link to={`/episodios/${anime.Id}`}>
+              <Link
+                to={{
+                  pathname: `/episodios/${anime.Id}`,
+                  anime_conf: {
+                    title: anime.Nome,
+                    avatar: anime.Imagem,
+                  },
+                }}
+              >
                 <span>{anime.Nome}</span>
                 <LazyLoadImage
                   effect="blur"
