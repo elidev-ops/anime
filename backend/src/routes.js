@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-
+// Rotas
 const route = new Router();
 
 route.get('/animes', async (req, res) => {
