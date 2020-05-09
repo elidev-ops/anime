@@ -27,7 +27,7 @@ export const Content = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 50px;
   padding: 0 50px;
 

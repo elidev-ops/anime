@@ -19,6 +19,14 @@ route.get('/episodios/:id', async (req, res) => {
   return res.json(response.data);
 });
 
+route.get('/anime/:id', async (req, res) => {
+  const { id } = req.params;
+  const response = await axios.get(
+    `http://one.zetai.info/odata/Animesdb?%24filter=Id%20eq%20${id}`
+  );
+  return res.json(response.data);
+});
+
 route.get('/links', async (req, res) => {
   const { id } = req.query;
   const response = await axios.get(
