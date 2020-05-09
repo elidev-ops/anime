@@ -6,7 +6,7 @@ const route = new Router();
 route.get('/animes', async (req, res) => {
   const { name } = req.query;
   const response = await axios.get(
-    `http://one.zetai.info/odata/Animesdb?%24filter=substringof(%27${name}%27%2C%20Nome)&%24select=Id%2CNome%2CImagem&%24orderby=Nome&%24skip=0&%24inlinecount=allpages`
+    `http://one.zetai.info/odata/Animesdb?%24filter=substringof(%27${name}%27%2C%20Nome)&%24select=Id%2CNome%2CImagem%2CDesc%2CAno%2CCategoria&%24orderby=Nome&%24skip=0&%24inlinecount=allpages`
   );
   return res.json(response.data);
 });

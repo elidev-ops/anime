@@ -74,7 +74,7 @@ export const Content = styled.ul`
       text-decoration: none;
 
       span {
-        font-size: 12px;
+        font-size: 14px;
         color: #f1f1f1;
         font-weight: 700;
         margin-bottom: 10px;

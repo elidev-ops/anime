@@ -10,6 +10,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
 
   button {
     background-color: transparent;
@@ -18,6 +19,7 @@ export const Header = styled.header`
   }
 
   h2 {
+    font-size: 18px;
     margin: 0 auto;
     color: #f1f1f1;
   }
@@ -41,6 +43,7 @@ export const Content = styled.div`
     width: 700px;
     height: 394px;
     background-color: #1e1e26;
+    border-radius: 4px;
   }
 
   div {

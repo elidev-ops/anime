@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FaArrowLeft, FaVideo, FaDownload } from 'react-icons/fa';
+import { FaArrowLeft, FaDownload, FaPlay } from 'react-icons/fa';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 
 import { Container, Header, Content } from './styles';
@@ -7,7 +8,8 @@ import api from '../../services/api';
 import Loading from '../../components/Load';
 
 function Episodes(props) {
-  const data = props.location.anime_conf;
+  const data = props.location.anime;
+  console.log(data);
   const { id } = props.match.params;
   if (localStorage.getItem('title')) localStorage.removeItem('title');
   if (!localStorage.getItem('anime'))
@@ -32,6 +34,7 @@ function Episodes(props) {
       setLoading(false);
     });
   }, [id]);
+  if (loading) return <Loading />;
   return (
     <Container>
       <Header>
@@ -42,32 +45,32 @@ function Episodes(props) {
       </Header>
       <Content>
         <div>
-          <h1>{anime.title}</h1>
-          <img src={anime.avatar} alt="" />
+          <h1>{anime.Nome}</h1>
+          <div>
+            <LazyLoadImage effect="blur" src={anime.Imagem} alt={anime.Nome} />
+            <div>
+              <strong>Ano: {anime.Ano}</strong>
+              <p>Descrição: {anime.Desc}</p>
+            </div>
+          </div>
         </div>
         <ul>
-          {loading ? (
-            <Loading />
-          ) : (
-            episodios.map((episodio) => (
-              <li key={episodio.Id}>
-                <h3>{episodio.Nome}</h3>
-                <Link
-                  to={{
-                    pathname: `/assistir/${episodio.Id}`,
-                    title: episodio.Nome,
-                  }}
-                >
-                  <FaVideo size={16} />
-                  Assistir
-                </Link>
-                <Link to={`/assistir/${episodio.Id}`}>
-                  <FaDownload size={16} />
-                  Download
-                </Link>
-              </li>
-            ))
-          )}
+          {episodios.map((episodio) => (
+            <li key={episodio.Id}>
+              <h3>{episodio.Nome}</h3>
+              <Link
+                to={{
+                  pathname: `/assistir/${episodio.Id}`,
+                  title: episodio.Nome,
+                }}
+              >
+                <FaPlay size={16} />
+              </Link>
+              <Link to={`/assistir/${episodio.Id}`}>
+                <FaDownload size={16} />
+              </Link>
+            </li>
+          ))}
         </ul>
       </Content>
     </Container>

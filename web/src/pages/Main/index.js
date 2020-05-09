@@ -51,10 +51,7 @@ function Main() {
               <Link
                 to={{
                   pathname: `/episodios/${anime.Id}`,
-                  anime_conf: {
-                    title: anime.Nome,
-                    avatar: anime.Imagem,
-                  },
+                  anime,
                 }}
               >
                 <span>{anime.Nome}</span>
