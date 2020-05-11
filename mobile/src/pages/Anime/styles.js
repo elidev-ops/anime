@@ -12,13 +12,15 @@ export const ImageAnime = styled.Image`
   height: 310px;
 `;
 export const Title = styled.Text`
-  padding: 20px;
+  margin-top: 20px;
+  padding: 0 20px;
   color: #f1f1f1;
   font-weight: 700;
+  font-size: 24px;
 `;
 export const Description = styled.Text`
   color: #f1f1f1;
-  padding: 10px;
+  padding: 0 20px;
 `;
 export const Button = styled.TouchableOpacity`
   margin-top: 20px;

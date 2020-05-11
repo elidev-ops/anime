@@ -6,31 +6,38 @@ const route = new Router();
 route.get('/animes', async (req, res) => {
   const { name } = req.query;
   const response = await axios.get(
-    `http://one.zetai.info/odata/Animesdb?%24filter=substringof(%27${name}%27%2C%20Nome)&%24select=Id%2CNome%2CImagem%2CDesc%2CAno%2CCategoria&%24orderby=Nome&%24skip=0&%24inlinecount=allpages`
+    `http://brasilsenpai.net/files/system.php?call=pesquisa&Nome=${name}&Categoria=Anime&Pagina=1`
   );
-  return res.json(response.data);
-});
+  response.data.map(
+    (code) =>
+      (code.Imagem = `http://brasilsenpai.net/capas/${code.CodAniMan}.jpg`)
+  );
 
-route.get('/episodios/:id', async (req, res) => {
-  const { id } = req.params;
-  const response = await axios.get(
-    `http://one.zetai.info/api/episodioexes/${id}`
-  );
   return res.json(response.data);
 });
 
 route.get('/anime/:id', async (req, res) => {
   const { id } = req.params;
   const response = await axios.get(
-    `http://one.zetai.info/odata/Animesdb?%24filter=Id%20eq%20${id}`
+    `http://brasilsenpai.net/files/system.php?call=sinopse&CodAniMan=${id}`
   );
+  response.data.Imagem = `http://brasilsenpai.net/capas/${id}.jpg`;
   return res.json(response.data);
 });
+
+// route.get('/anime/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const response = await axios.get(
+//     `http://one.zetai.info/odata/Animesdb?%24filter=Id%20eq%20${id}`
+//   );
+
+//   return res.json(response.data);
+// });
 
 route.get('/links', async (req, res) => {
   const { id } = req.query;
   const response = await axios.get(
-    `http://one.zetai.info/api/episodioexes/links?id=${id}`
+    `http://brasilsenpai.net/files/system.php?call=episodio&CodEpisodio=${id}`
   );
   return res.json(response.data);
 });

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './pages/Home';
 import Anime from './pages/Anime';
+import Episodios from './pages/Episodios';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,7 @@ const Routes = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Anime" component={Anime} />
-        {/* <Stack.Screen name="Episodios" component={Episodios} /> */}
+        <Stack.Screen name="Episodios" component={Episodios} />
       </Stack.Navigator>
     </NavigationContainer>
   );

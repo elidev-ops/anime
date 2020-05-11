@@ -57,8 +57,8 @@ export const AnimeTitle = styled.Text`
   margin-bottom: 10px;
 `;
 export const AnimeImage = styled.Image`
-  width: 100px;
-  height: 155px;
+  width: 80px;
+  height: 80px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -82,11 +82,12 @@ export const AnimeInfo = styled.View`
 
 export const ButtonToDetail = styled.View`
   margin-left: 10px;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 0;
+
+  background-color: #cc0034;
+  padding: 10px;
+  border-radius: 5000px;
 `;
 export const TextToDetail = styled.Text`
   color: #f1f1f1;
