@@ -11,19 +11,20 @@ export const Header = styled.View`
   width: 100%;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   border-bottom-width: 1px;
   border-bottom-color: rgba(255, 255, 255, 0.05);
   padding-bottom: 20px;
 `;
 export const LinkToBack = styled.TouchableOpacity`
-  padding: 10px 20px;
+  margin-right: auto;
+  padding: 0 20px;
 `;
 export const Title = styled.Text`
   font-size: 24px;
   font-weight: 700;
   color: #cc0034;
-  margin: 0 auto;
+  margin: 0 auto 0 -56px;
 `;
 export const Content = styled.View`
   flex-direction: row;

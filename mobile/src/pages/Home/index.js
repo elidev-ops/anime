@@ -69,12 +69,15 @@ const Home = () => {
         <ActivityIndicator style={{ flex: 1 }} size="large" color="#cc0034" />
       ) : (
         <FlatList
-          style={{ marginTop: 10, width: 440 }}
+          style={{ marginTop: 10, width: 440, padding: 10 }}
           data={data}
           showsVerticalScrollIndicator
           keyExtractor={(item) => String(item.CodAniMan)}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigateToAnime(item)}>
+            <TouchableOpacity
+              style={{ padding: 5 }}
+              onPress={() => navigateToAnime(item)}
+            >
               <AnimeContent>
                 <AnimeImage
                   source={{
@@ -84,7 +87,7 @@ const Home = () => {
                 <AnimeInfo>
                   <AnimeTitle numberOfLines={1}>{item.Nome}</AnimeTitle>
                   <ButtonToDetail>
-                    <Feather name="play" size={18} color="#19181f" />
+                    <Feather name="play" size={18} color="#f1f1f1" />
                   </ButtonToDetail>
                 </AnimeInfo>
               </AnimeContent>

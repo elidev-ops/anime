@@ -46,7 +46,6 @@ export const AnimeContent = styled.View`
   justify-content: center;
   flex-direction: row;
   border-radius: 4px;
-  margin-top: 10px;
 `;
 export const AnimeTitle = styled.Text`
   margin-top: 10px;
@@ -59,6 +58,7 @@ export const AnimeTitle = styled.Text`
 export const AnimeImage = styled.Image`
   width: 80px;
   height: 80px;
+  border-radius: 4px;
 `;
 
 export const Button = styled.TouchableOpacity`

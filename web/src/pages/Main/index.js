@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from '@unform/web';
-import { FaSearch, FaStar, FaPlay } from 'react-icons/fa';
+import { FaSearch, FaStar, FaPlay, FaTrash } from 'react-icons/fa';
 import { FiStar } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
@@ -10,7 +10,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import Loading from '../../components/Load';
 import api from '../../services/api';
-import { Container, Search, Content, Favorites } from './styles';
+import { Container, Search, Content, Favorites, AnimeFavorite } from './styles';
 
 function Main() {
   const favoriteOject = JSON.parse(localStorage.getItem('favorites'));
@@ -27,7 +27,7 @@ function Main() {
     setLoading(true);
 
     api.get(`/animes?name=${name}`).then((response) => {
-      setAnimes(response.data.value);
+      setAnimes(response.data);
       setLoading(false);
     });
   }, [name]);
@@ -43,11 +43,19 @@ function Main() {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
 
-  function favoriteHandler({ Id, Nome, Imagem, Desc }) {
-    const filterId = favorites.filter((favorite) => favorite.Id === Id);
+  function favoriteHandler({ CodAniMan, Nome, Imagem }) {
+    const filterId = favorites.filter(
+      (favorite) => favorite.CodAniMan === CodAniMan
+    );
     if (filterId.length > 0)
-      setFavorites(favorites.filter((favorite) => favorite.Id !== Id));
-    else setFavorites([...favorites, { Id, Nome, Imagem, Desc }]);
+      setFavorites(
+        favorites.filter((favorite) => favorite.CodAniMan !== CodAniMan)
+      );
+    else setFavorites([...favorites, { CodAniMan, Nome, Imagem }]);
+  }
+
+  function deleteFavoriteHandler(id) {
+    setFavorites(favorites.filter((favorite) => favorite.CodAniMan !== id));
   }
 
   return (
@@ -69,16 +77,18 @@ function Main() {
         {favorites != '' ? <h3>{'\u2B50'} Favoritados</h3> : ''}
         <div>
           {favorites.map((anime) => (
-            <Link
-              key={anime.Id}
-              to={{ pathname: `/episodios/${anime.Id}`, anime }}
-            >
-              <img src={anime.Imagem} alt={anime.Nome} />
+            <AnimeFavorite url={anime.Imagem}>
               <strong>{anime.Nome}</strong>
-              <span>
+              <Link
+                key={anime.CodAniMan}
+                to={{ pathname: `/episodios/${anime.CodAniMan}`, anime }}
+              >
                 <FaPlay size={16} color="#fff" />
-              </span>
-            </Link>
+              </Link>
+              <div onClick={() => deleteFavoriteHandler(anime.CodAniMan)}>
+                <FaTrash size={16} />
+              </div>
+            </AnimeFavorite>
           ))}
         </div>
       </Favorites>
@@ -87,10 +97,11 @@ function Main() {
           <Loading />
         ) : (
           animes.map((anime) => (
-            <li key={anime.Id}>
+            <li key={anime.CodAniMan}>
               <button type="button" onClick={() => favoriteHandler(anime)}>
-                {favorites.filter((favorite) => favorite.Id === anime.Id)
-                  .length ? (
+                {favorites.filter(
+                  (favorite) => favorite.CodAniMan === anime.CodAniMan
+                ).length ? (
                   <FaStar size={16} color="#F19519" />
                 ) : (
                   <FiStar size={16} />
@@ -98,7 +109,7 @@ function Main() {
               </button>
               <Link
                 to={{
-                  pathname: `/episodios/${anime.Id}`,
+                  pathname: `/episodios/${anime.CodAniMan}`,
                   anime,
                 }}
               >

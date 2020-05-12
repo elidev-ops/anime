@@ -125,77 +125,67 @@ export const Favorites = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+`;
 
-    a {
-      width: 200px;
-      height: 130px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transform: scale(1);
-      transition: all ease-in-out 300ms;
-      span {
-        z-index: 4;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 2px solid #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-      }
+export const AnimeFavorite = styled.div`
+  background-image: url(${(props) => props.url});
+  width: 100%;
+  height: 100%;
+  max-width: 150px;
+  min-width: 150px;
+  min-height: 100px;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+  transition: all linear 100ms;
 
-      img {
-        position: absolute;
-        top: -50%;
-        left: 0;
-        z-index: 1;
-      }
+  & + div {
+    margin-left: 10px;
+  }
+  & > * {
+    opacity: 0;
+    transition: all linear 100ms;
+  }
+  &:hover {
+    border: 2px solid #f1f1f1;
+    transform: translateY(-8px);
+    background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 1) 95%
+      ),
+      url(${(props) => props.url});
+  }
+  &:hover > * {
+    opacity: 1;
+  }
 
-      strong {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: 2;
-        color: #fff;
-        background-image: linear-gradient(
-          rgba(0, 0, 0, 1) 0%,
-          rgba(0, 0, 0, 0.5) 100%
-        );
-        padding: 8px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        transition: all ease-in-out 300ms;
-      }
+  strong {
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    top: 5px;
+  }
 
-      & + a {
-        margin-left: 10px;
-      }
+  a {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
 
-      & > strong,
-      & > span {
-        display: none;
-      }
+  div {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 
-      &:hover {
-        border: 2px solid #fff;
-        transform: scale(1.5);
-        z-index: 99999;
-      }
-
-      &:hover + a {
-        margin-left: 5em;
-      }
-
-      &:hover > strong,
-      &:hover > span {
-        display: flex;
-      }
+    svg {
+      fill: #fff;
     }
   }
 `;

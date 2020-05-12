@@ -12,19 +12,16 @@ function Watch(props) {
   const { title } = props.location;
   const { id } = props.match.params;
 
-  if (!localStorage.getItem('title')) localStorage.setItem('title', title);
-  const anime_title = localStorage.getItem('title');
-
   const history = useHistory();
 
   const [video, setVideo] = useState('');
   const [links, setLinks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     api.get(`links?id=${id}`).then((response) => {
-      setLinks(response.data);
+      setLinks(response.data.Fontes);
       setLoading(false);
     });
   }, [id]);
@@ -32,8 +29,6 @@ function Watch(props) {
   function watchHandler(url) {
     setVideo(url);
   }
-
-  const player = new Plyr('#player');
 
   return loading ? (
     <Loading />
@@ -43,7 +38,7 @@ function Watch(props) {
         <button type="button" onClick={() => history.goBack()}>
           <FaArrowLeft size={24} color="#cc0034" />
         </button>
-        <h2>{anime_title}</h2>
+        <h2>{title}</h2>
       </Header>
       <Content>
         <div id="video">{video ? <video src={video} controls /> : ''}</div>
@@ -51,10 +46,10 @@ function Watch(props) {
           {links.map((link) => (
             <button
               type="button"
-              key={link.Id}
-              onClick={() => watchHandler(link.Endereco)}
+              key={link[2]}
+              onClick={() => watchHandler(link[0])}
             >
-              {link.Nome}
+              LINK {links.indexOf(link) + 1}
             </button>
           ))}
         </div>

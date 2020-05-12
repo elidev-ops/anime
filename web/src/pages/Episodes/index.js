@@ -8,31 +8,19 @@ import api from '../../services/api';
 import Loading from '../../components/Load';
 
 function Episodes(props) {
-  const data = props.location.anime;
-  console.log(data);
   const { id } = props.match.params;
-  if (localStorage.getItem('title')) localStorage.removeItem('title');
-  if (!localStorage.getItem('anime'))
-    localStorage.setItem('anime', JSON.stringify(data));
 
-  const dados = JSON.parse(localStorage.getItem('anime'));
-
-  const [anime, setAnime] = useState({});
-  const [episodios, setEpisodios] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  function ordenarPorId(a, b) {
-    return a.Id - b.Id;
-  }
+  const [animeContent, setAnimeContent] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setAnime(dados);
-    setLoading(true);
-    api.get(`/episodios/${id}`).then((response) => {
-      response.data.sort(ordenarPorId);
-      setEpisodios(response.data);
+    async function fetchData() {
+      setLoading(true);
+      const response = await api.get(`/anime/${id}`);
+      setAnimeContent(response.data);
       setLoading(false);
-    });
+    }
+    fetchData();
   }, [id]);
   if (loading) return <Loading />;
   return (
@@ -45,28 +33,30 @@ function Episodes(props) {
       </Header>
       <Content>
         <div>
-          <h1>{anime.Nome}</h1>
+          <h1>{animeContent.Sinopse.Nome}</h1>
           <div>
-            <LazyLoadImage effect="blur" src={anime.Imagem} alt={anime.Nome} />
+            <LazyLoadImage effect="blur" src={animeContent.Imagem} alt="" />
             <div>
-              <strong>Ano: {anime.Ano}</strong>
-              <p>Descrição: {anime.Desc}</p>
+              <strong>Genero: {animeContent.Sinopse.Generos}</strong>
+              <p>Descrição: {animeContent.Sinopse.Descricao}</p>
             </div>
           </div>
         </div>
         <ul>
-          {episodios.map((episodio) => (
-            <li key={episodio.Id}>
-              <h3>{episodio.Nome}</h3>
+          {animeContent.Episodios.map((episodio) => (
+            <li key={episodio.CodEpisodio}>
+              <h3>
+                {episodio.Tipo} {episodio.Episodio}
+              </h3>
               <Link
                 to={{
-                  pathname: `/assistir/${episodio.Id}`,
-                  title: episodio.Nome,
+                  pathname: `/assistir/${episodio.CodEpisodio}`,
+                  title: `${animeContent.Sinopse.Nome} ${episodio.Tipo} ${episodio.Episodio}`,
                 }}
               >
                 <FaPlay size={16} />
               </Link>
-              <Link to={`/assistir/${episodio.Id}`}>
+              <Link to={`/assistir/${episodio.CodEpisodio}`}>
                 <FaDownload size={16} />
               </Link>
             </li>

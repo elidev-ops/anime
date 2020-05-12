@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FlatList, ActivityIndicator, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import * as IntentLauncher from 'expo-intent-launcher';
 
 import api from '../../services/api';
 
@@ -41,7 +40,9 @@ const Episodios = () => {
     setStatus(id);
     getEpsodioWatch(id[0]);
   }
-  function toWatchEpisode(url) {}
+  function toWatchEpisode(url) {
+    Linking.openURL(url);
+  }
   return (
     <Container>
       <Header>
