@@ -14,7 +14,7 @@
 ## Amostras
 
 ### Frontend web
-![Web Site](/github/web.gif | width=300)
+<img src="/github/web.gif" width="700">
 
 ### Mobile no android
-![Aplicativo no android](/github/mobile.gif | width=300)
+<img src="/github/mobile.gi" width="300">
