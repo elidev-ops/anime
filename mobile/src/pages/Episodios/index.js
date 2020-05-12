@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text } from 'react-native';
+import { FlatList, ActivityIndicator, Linking } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
+import * as IntentLauncher from 'expo-intent-launcher';
 
 import api from '../../services/api';
 
@@ -22,6 +23,7 @@ const Episodios = () => {
   const route = useRoute();
   const { animeEpisodios } = route.params;
   const [episodio, setEpisodio] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(['', false]);
 
   function sendToBackScreen() {
@@ -29,15 +31,17 @@ const Episodios = () => {
   }
 
   async function getEpsodioWatch(item) {
+    setLoading(true);
     const ep = await api.get(`/links?id=${item}`);
     setEpisodio(ep.data.Fontes);
+    setLoading(false);
   }
 
   function sendStatus(id) {
     setStatus(id);
     getEpsodioWatch(id[0]);
   }
-
+  function toWatchEpisode(url) {}
   return (
     <Container>
       <Header>
@@ -65,11 +69,22 @@ const Episodios = () => {
             </BtnEpisodio>
             {status[0] === item.CodEpisodio ? (
               <Content>
-                {episodio.map((i) => (
-                  <LinkEpisodio key={episodio[0]}>
-                    <TextLink>LINK {episodio.indexOf(i) + 1}</TextLink>
-                  </LinkEpisodio>
-                ))}
+                {loading ? (
+                  <ActivityIndicator
+                    style={{ flex: 1 }}
+                    size="small"
+                    color="#cc0034"
+                  />
+                ) : (
+                  episodio.map((i) => (
+                    <LinkEpisodio
+                      onPress={() => toWatchEpisode(i[0])}
+                      key={episodio.indexOf(i)}
+                    >
+                      <TextLink>LINK {episodio.indexOf(i) + 1}</TextLink>
+                    </LinkEpisodio>
+                  ))
+                )}
               </Content>
             ) : null}
           </>
