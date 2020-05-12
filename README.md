@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/github/retro_animes.svg" style="fill: '#cc0034'" />
+  <img src="/github/retro_animes.svg" width="300" heigth="300" />
   <h3 align="center">R3tr0 Animes</h3>
 </p>
 
@@ -7,14 +7,14 @@
 
 ## Aplicação FullStack
 
-- Backend [Nodejs](https://nodejs.org/pt-br/)
-- Frontend web [Reactjs](https://pt-br.reactjs.org/)
-- Mobile [React Native](https://reactnative.dev/)
+- Backend [Nodejs](https://nodejs.org/pt-br/ =50%x)
+- Frontend web [Reactjs](https://pt-br.reactjs.org/ =50%x)
+- Mobile [React Native](https://reactnative.dev/ =50%x)
 
 ## Amostras
 
 ### Frontend web
-![Web Site](/github/web.gif "Amostra do Frontend")
+![Web Site](/github/web.gif "Amostra do Frontend" =50%x)
 
 ### Mobile no android
-![Aplicativo no android](/github/mobile.gif "Amostra da aplicação mobile")
+![Aplicativo no android](/github/mobile.gif "Amostra da aplicação mobile" =50%x)
