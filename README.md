@@ -7,14 +7,14 @@
 
 ## Aplicação FullStack
 
-- Backend [Nodejs](https://nodejs.org/pt-br/ =50%x)
-- Frontend web [Reactjs](https://pt-br.reactjs.org/ =50%x)
-- Mobile [React Native](https://reactnative.dev/ =50%x)
+- Backend [Nodejs](https://nodejs.org/pt-br/)
+- Frontend web [Reactjs](https://pt-br.reactjs.org/)
+- Mobile [React Native](https://reactnative.dev/)
 
 ## Amostras
 
 ### Frontend web
-![Web Site](/github/web.gif "Amostra do Frontend" =50%x)
+![Web Site](/github/web.gif =200x)
 
 ### Mobile no android
-![Aplicativo no android](/github/mobile.gif "Amostra da aplicação mobile" =50%x)
+![Aplicativo no android](/github/mobile.gif =200x)
