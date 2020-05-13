@@ -17,4 +17,4 @@
 <img src="/github/web.gif" width="700">
 
 ### Mobile no android
-<img src="/github/mobile.gi" width="300">
+<img src="/github/mobile.gif" width="300">
