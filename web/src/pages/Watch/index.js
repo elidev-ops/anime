@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { FaArrowLeft } from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
-import Plyr from '@rocketseat/react-plyr';
+import { useHistory } from 'react-router-dom';
 
 import Loading from '../../components/Load';
 import { Container, Header, Content } from './styles';

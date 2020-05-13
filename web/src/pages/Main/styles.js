@@ -130,6 +130,9 @@ export const Favorites = styled.div`
 
 export const AnimeFavorite = styled.div`
   background-image: url(${(props) => props.url});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   width: 100%;
   height: 100%;
   max-width: 150px;
@@ -149,7 +152,7 @@ export const AnimeFavorite = styled.div`
     transition: all linear 100ms;
   }
   &:hover {
-    border: 2px solid #f1f1f1;
+    box-shadow: 0 0 0 2px #f1f1f1;
     transform: translateY(-8px);
     background-image: linear-gradient(
         to top,

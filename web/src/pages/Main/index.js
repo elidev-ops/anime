@@ -74,10 +74,10 @@ function Main() {
         </Form>
       </Search>
       <Favorites>
-        {favorites != '' ? <h3>{'\u2B50'} Favoritados</h3> : ''}
+        {favorites.length !== 0 ? <h3>{'\u2B50'} Favoritados</h3> : ''}
         <div>
           {favorites.map((anime) => (
-            <AnimeFavorite url={anime.Imagem}>
+            <AnimeFavorite key={anime.CodAniMan} url={anime.Imagem}>
               <strong>{anime.Nome}</strong>
               <Link
                 key={anime.CodAniMan}
