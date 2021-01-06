@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@unform/core": "^2.1.0",
     "@unform/web": "^2.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "plyr": "^3.6.2",
     "react": "^16.13.1",
     "react-debounce-input": "^3.2.2",
